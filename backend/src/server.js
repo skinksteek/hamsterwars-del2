@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 8000
 
 
 // middleware
+app.use( express.static(__dirname + '/../build') )
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cors())
