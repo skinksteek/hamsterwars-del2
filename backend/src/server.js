@@ -24,8 +24,9 @@ app.use((req, res, next) => {
 })
 
 // routes / endpoints
-app.get('*', (req, res) => {
-	res.sendFile(__dirname + '../../build/index.html')
+app.get('/', (req, res) => {
+	// res.sendFile(__dirname + '../../build/index.html')
+  // console.log(__dirname)
 })
 app.get('/', (req, res) => {
   console.log('Web root')
