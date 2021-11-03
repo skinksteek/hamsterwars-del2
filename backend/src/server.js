@@ -1,6 +1,7 @@
 // importera paket
 const express = require('express');
 const app = express();
+const path = require('path')
 
 const hamstersRouter = require('./routes/hamsterRoute.js');
 const matchesRouter = require('./routes/matchesRoute.js');
@@ -24,8 +25,8 @@ app.use((req, res, next) => {
 })
 
 // routes / endpoints
-app.get('/', (req, res) => {
-	// res.sendFile(__dirname + '../../build/index.html')
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname , '../../build/index.html'))
   console.log(__dirname)
 })
 app.get('/', (req, res) => {
