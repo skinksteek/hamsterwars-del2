@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 
 // routes / endpoints
 app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname , '../../build/index.html'))
+	res.sendFile(__dirname , '../../build/index.html')
   console.log(__dirname)
 })
 app.get('/', (req, res) => {
