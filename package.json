@@ -24,12 +24,12 @@
   },
   "scripts": {
     "start": "node backend/src/server.js",
-    "start-frontend": "react-scripts start",
+    "start-frontend": "set PORT=8005 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:1337",
+  "proxy": "http://localhost:8000",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -47,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.3.2"
   }
 }
