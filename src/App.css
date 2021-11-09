@@ -6,10 +6,17 @@
 	--header-bg-opacity: #81B622c;
 	--shadow: 2px 5px 10px #000;
 }
+* {
+  box-sizing: border-box;
+}
 
 html {
 	height: 100%;
 	background-color: var(--background);
+}
+
+body {
+  margin: 0;
 }
 
 .App {
@@ -23,7 +30,7 @@ html {
 }
 
 header {
-	width: 100vw;
+	width: 100%;
   padding: 3em 0;
 	margin-bottom: 5em;
   height: 50px;
@@ -33,13 +40,15 @@ header {
 	background-color: var(--header-bg);
 }
 
+main {
+  margin-left: auto;
+  max-width: 1440px;
+  margin-right: auto;
+}
+
 nav {
 	display: flex;
-	justify-content: center;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
+	justify-content: center;;
 	background-color: var(--header-bg-opacity);
 	z-index: 2;
 }
@@ -52,6 +61,7 @@ nav a {
 	margin: 1em;
 	font-weight: 600;
 	text-decoration: none;
+  font-size: 24px;
 }
 
 a:hover:not(button a) {
@@ -92,5 +102,46 @@ img {
   padding-top: 1em;
 }
 
+.hamster-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.hamster-card {
+  flex: 0 0 23%;
+  padding: 0 1%;
+  margin-bottom: 25px;
+}
+
+.hamster-card > img {
+  height: 200px;
+  width: 100%;
+}
+
+.hamster-group > article > dl {
+  text-align: left;
+}
+
+.hamster-group > article > dl > dt {
+  font-weight: bold;
+}
+
+.hamster-group > article > dl > dd {
+  margin-left: 0;
+}
+
+.hamster-form {
+  display: flex;
+  justify-content: center;
+}
+
+.add-hamster-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
 
 

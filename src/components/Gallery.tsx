@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import Hamster from "../models/HamsterInterface"
+import NewHamsterForm from "./NewHamsterForm"
 
 const Gallery = () => {
   const [allHamsters, setAllHamsters] = useState<Hamster[] | null>(null)
@@ -15,10 +16,21 @@ const Gallery = () => {
     getHamsters()
   }, [])
 
+  const handleDelete = (hamsterToDelete: Hamster) => {
+      const filteredHamsters = allHamsters?.filter( hamster => hamster.id !== hamsterToDelete.id) || []
+      setAllHamsters(filteredHamsters)
+      fetch("/hamsters/" + hamsterToDelete.id, { method: 'delete' })
+    
+  }
+
   return (
+    <>
+    <section className="hamster-form">
+    <NewHamsterForm show={true} set={true} allHamsters={allHamsters} setAllHamsters={setAllHamsters} />
+    </section>
     <section className="hamster-group">
       {allHamsters?.map(hamster => (
-        <article className="hamster-card">
+        <article key={hamster.id} className="hamster-card">
           <img src={`/img/${hamster.imgName}`} alt={hamster.name} />
           <dl>
             <dt>Namn</dt>
@@ -34,11 +46,13 @@ const Gallery = () => {
             <dt>Vinster: </dt>
             <dd>{hamster.wins}</dd>
             <dt>Förluster: </dt>
-            <dd>{hamster.defeats}</dd>           
+            <dd>{hamster.defeats}</dd>
           </dl>
+          <button className={'remove-gallery-card'} onClick={() => handleDelete(hamster)}>Ta bort</button>
         </article>
       ))}
     </section>
+    </>
   )
 }
 
