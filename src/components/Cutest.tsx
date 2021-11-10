@@ -1,32 +1,36 @@
-
-import { useState, useEffect } from "react"
-import Hamster from '../models/HamsterInterface'
+import { useState, useEffect } from "react";
+import Hamster from '../models/HamsterInterface';
+import ErrorMessage from './ErrorMessage';
 
 const Cutest = () => {
-  const [cutestHamster, setCutestHamster] = useState<Hamster[] | null>(null)
+  const [cutestHamster, setCutestHamster] = useState<Hamster[] | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
-  async function sendRequest() {
-    const response = await fetch('/hamsters/cutest')
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    } else {
-      const data = await response.json()
-      setCutestHamster(data)
+  const sendRequest = async () => {
+    try {
+      const response = await fetch('/hamsters/cutest');
+      if (!response.ok) {
+        throw new Error('Något gick snett, kontakta fnörsk');
+      } else {
+        const data = await response.json();
+        setCutestHamster(data);
+      }
+    } catch (e:any) {
+      setErrorMessage(e.message);
     }
-  }
+  };
 
   useEffect(() => {
-    sendRequest()
-  }, [])
+    sendRequest();
+  }, []);
 
   if (cutestHamster && cutestHamster?.length > 1) {
-    let getRandomCutie: Hamster = cutestHamster[Math.floor(Math.random() * cutestHamster.length)]
-    setCutestHamster([getRandomCutie])
+    let getRandomCutie: Hamster = cutestHamster[Math.floor(Math.random() * cutestHamster.length)];
+    setCutestHamster([getRandomCutie]);
   }
 
-  
-
   return (
+    <>
     <div className="cutest-div">
       {cutestHamster ?
         cutestHamster.map(hamster => (
@@ -38,9 +42,11 @@ const Cutest = () => {
             <h4>{hamster.name} är riktigt duktig!</h4>
           </article>
         ))
-        : 'Laddar hamstrar...'}
+        : 
+        <ErrorMessage message={errorMessage} />}
     </div>
-  )
-}
+    </>
+  );
+};
 
-export default Cutest
+export default Cutest;
