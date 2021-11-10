@@ -72,6 +72,10 @@ main {
 	margin-bottom: 10em;
 }
 
+.error-message {
+  color: red;
+}
+
 img {
 	width: 17em;
 	justify-self: center;
@@ -135,6 +139,17 @@ img {
 .hamster-form {
   display: flex;
   justify-content: center;
+}
+
+.hamster-info {
+  opacity: 0;
+  height: 0;
+  transition: opacity 200ms ease-in, height 200ms ease-in;
+}
+
+.hamster-card:hover .hamster-info {
+  opacity: 1;
+  height: 100%;
 }
 
 .add-hamster-form {
