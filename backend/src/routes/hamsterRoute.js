@@ -99,7 +99,7 @@ router.put('/:id', async (req, res) => {
   }
   const hamsterBody = req.body
   if (!isHamsterCute(hamsterBody)) {
-    res.sendStatus(400)
+    res.sendStatus(200)
     return
   } else {
     await updateOne(req.params.id, hamsterBody, HAMSTERS)
