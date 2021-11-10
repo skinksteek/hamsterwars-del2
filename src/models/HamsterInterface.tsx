@@ -9,6 +9,6 @@ interface Hamster {
 	wins: number,
 	defeats: number,
 	games: number,
-}
+};
 
-export default Hamster
+export default Hamster;

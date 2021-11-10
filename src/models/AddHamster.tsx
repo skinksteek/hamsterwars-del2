@@ -6,7 +6,7 @@ interface AddHamster {
 	imgName: string,
 	wins: number,
 	defeats: number,
-	games: number
-}
+	games: number,
+};
 
-export default AddHamster
+export default AddHamster;
