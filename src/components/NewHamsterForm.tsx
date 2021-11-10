@@ -1,16 +1,16 @@
-import { useState } from "react"
-import AddFormProps from "../models/AddFormProps"
-import AddHamster from "../models/AddHamster"
+import { useState } from "react";
+import AddFormProps from "../models/AddFormProps";
+import AddHamster from "../models/AddHamster";
 
-const NewHamsterForm = ({show, set, allHamsters, setAllHamsters}:AddFormProps) => {
-  const [ name, setName ] = useState<string>('')
-	const [ loves, setLoves ] = useState<string>('')
-	const [ favFood, setFavFood ] = useState<string>('')
-	const [ imgName, setImgName ] = useState<string>('')
-	const [ age, setAge ] = useState<number>(0)
+const NewHamsterForm = ({setAllHamsters}:AddFormProps) => {
+  const [ name, setName ] = useState<string>('');
+	const [ loves, setLoves ] = useState<string>('');
+	const [ favFood, setFavFood ] = useState<string>('');
+	const [ imgName, setImgName ] = useState<string>('');
+	const [ age, setAge ] = useState<number>(0);
 
   const handleAddHamster = async () => {
-    let newHamster = {
+    const newHamster = {
 			name,
 			age,
 			favFood,
@@ -19,11 +19,11 @@ const NewHamsterForm = ({show, set, allHamsters, setAllHamsters}:AddFormProps) =
 			wins: 0,
 			defeats: 0,
 			games: 0,
-		}
-		await updateWinner(newHamster)
-		await updateGallery(setAllHamsters)
+		};
+		await updateWinner(newHamster);
+		await updateGallery(setAllHamsters);
 		console.log('newHamster:', newHamster);
-	}
+	};
 
 	const updateWinner = async(x:AddHamster) => {
 		//PUT update wins ++, games ++
@@ -31,34 +31,32 @@ const NewHamsterForm = ({show, set, allHamsters, setAllHamsters}:AddFormProps) =
 			method: 'post', 
 			body:JSON.stringify(x),
 			headers: {
-				"Content-Type": "application/json"
-			}
-		})
-	}
+				"Content-Type": "application/json",
+			},
+		});
+	};
 
 	async function updateGallery(hamsterData:any) {
-		const response = await fetch('/hamsters')
-		const data = await response.json()
-		setAllHamsters(data)
-	}
+		const response = await fetch('/hamsters');
+		const data = await response.json();
+		setAllHamsters(data);
+	};
 
-  const validateName = () => {
-    return name.length >= 2
-  }
+  const validateName = () => name.length >= 2;
 
-  const validateLoves = () => {
-    return loves.length >= 2
-  }
+  const validateLoves = () => loves.length >= 2;
 
-  const validateFood = () => {
-    return favFood.length >= 2
-  }
+  const validateFood = () => favFood.length >= 2;
 
-  const validateAge = () => {
-    return Number(age) >= 0
-  }
+  const validateAge = () => Number(age) >= 0;
 
   const validateImg = () => imgName.match(/.(jpeg|jpg|gif|png)$/) !== null;
+  
+  const formIsValid = () => validateName()
+      && validateLoves()
+      && validateFood()
+      && validateAge()
+      && validateImg();
 
   return (
     <form className="add-hamster-form">
@@ -77,8 +75,12 @@ const NewHamsterForm = ({show, set, allHamsters, setAllHamsters}:AddFormProps) =
       
       <label htmlFor="img_input">Bild</label>
       <input type="text" name="imgName" id="img_input" placeholder="Hamster bild url" onChange={(e) => setImgName(e.target.value)} className={validateImg() ? 'valid' : ' not-valid'} />
+      {formIsValid() && (
+        <button type="button" value="Add" onClick={() => handleAddHamster()}>
+          Lägg till
+        </button>
+      )}
       
-      <button type="button" value="Add" onClick={() => handleAddHamster()}> Lägg till </button>
     </form>
   )
 }
