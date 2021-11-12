@@ -5,7 +5,7 @@ let privateKey;
 if (process.env.PRIVATE_KEY) {
   privateKey = JSON.parse(process.env.PRIVATE_KEY)
 } else {
-  privateKey = require('../../secrets/hamster-key.json');
+  privateKey = require('../secrets/hamster-key.json');
 }
 
 function connect() {

@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 8000
 
 // middleware
 app.use('/img', express.static(__dirname+'/hamsters')) 
-app.use('/', express.static(__dirname + '../../build') )
+app.use('/', express.static(__dirname+'/../build')) 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cors())
@@ -26,9 +26,9 @@ app.use((req, res, next) => {
 
 // routes / endpoints
 app.get('*', (req, res) => {
-	res.sendFile(__dirname , '/../build/index.html')
-  console.log(__dirname)
+	res.sendFile(__dirname + '/../build/index.html')
 })
+
 
 app.use('/hamsters', hamstersRouter)
 app.use('/matches', matchesRouter)
