@@ -1,21 +1,17 @@
 // importera paket
 const express = require('express');
 const app = express();
-
+const cors = require('cors');
 const hamstersRouter = require('./routes/hamsterRoute.js');
 const matchesRouter = require('./routes/matchesRoute.js');
 const winnersRouter = require('./routes/winners.js');
 const losersRouter = require('./routes/losers.js');
 const matchWinnersRouter = require('./routes/matchWinners.js');
+const path = require('path');
 
-const cors = require('cors');
-// konfigurera 
+
+// konfigurera app
 const PORT = process.env.PORT || 8000
-
-
-// statiska filer
-app.use('/img', express.static(__dirname+'/hamsters')) 
-app.use('/', express.static(__dirname+'/../build')) 
 
 // middleware
 app.use(express.urlencoded({extended: true}))
@@ -26,18 +22,22 @@ app.use((req, res, next) => {
   next()
 })
 
+// statiska filer
+app.use('/img', express.static(__dirname+'/hamsters')) 
+app.use('/', express.static(__dirname+'/../build')) 
+
+
 // routes / endpoints
-app.get('*', (req, res) => {
-	res.sendFile(path.join(appRoot, "public/html", "index.html"));
-})
-
-
-
 app.use('/hamsters', hamstersRouter)
 app.use('/matches', matchesRouter)
 app.use('/winners', winnersRouter)
 app.use('/losers', losersRouter)
 app.use('/matchWinners', matchWinnersRouter)
+
+app.get('*', (req, res) => {
+	res.sendFile(path.join(appRoot, "public/html", "index.html"));
+})
+
 
 // starta servern
 app.listen(PORT, () => {
