@@ -41,7 +41,7 @@ const Gallery = () => {
     <section className="hamster-form">
       <NewHamsterForm setAllHamsters={setAllHamsters} />
     </section>
-    <section className="hamster-group">
+    <section className="hamster-gallery-grid">
       {allHamsters?.map(hamster => (
         <article key={hamster.id} className="hamster-card">
           <img src={getImgUrl(hamster.imgName || '')} alt={hamster.name}/>
@@ -73,4 +73,3 @@ const Gallery = () => {
 };
 
 export default Gallery;
-
