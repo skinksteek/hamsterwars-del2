@@ -56,7 +56,6 @@ const Compete = () => {
 
   const updateLoser = async (y: Hamster) => {
     setLoser(y);
-    console.log(y);
     await fetch("/hamsters/" + y.id, {
       method: 'put',
       body: JSON.stringify({ defeats: y.defeats + 1, games: y.games + 1 }),
@@ -79,7 +78,6 @@ const Compete = () => {
 
 
   const handleClick = async (x: Hamster, y: Hamster) => {
-    console.log('showResult:', showResult);
     await updateMatches(x, y);
     await updateLoser(y);
     await updateWinner(x);

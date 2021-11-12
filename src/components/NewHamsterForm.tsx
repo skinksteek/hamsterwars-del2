@@ -22,7 +22,6 @@ const NewHamsterForm = ({setAllHamsters}:AddFormProps) => {
 		};
 		await updateWinner(newHamster);
 		await updateGallery(setAllHamsters);
-		console.log('newHamster:', newHamster);
 	};
 
 	const updateWinner = async(x:AddHamster) => {
