@@ -13,9 +13,11 @@ const cors = require('cors');
 const PORT = process.env.PORT || 8000
 
 
-// middleware
+// statiska filer
 app.use('/img', express.static(__dirname+'/hamsters')) 
 app.use('/', express.static(__dirname+'/../build')) 
+
+// middleware
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cors())
@@ -26,7 +28,7 @@ app.use((req, res, next) => {
 
 // routes / endpoints
 app.get('*', (req, res) => {
-	res.sendFile(__dirname + '/../build/index.html')
+	res.sendFile(path.join(appRoot, "public/html", "index.html"));
 })
 
 
