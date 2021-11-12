@@ -10,7 +10,7 @@ const Cutest = () => {
     try {
       const response = await fetch('/hamsters/cutest');
       if (!response.ok) {
-        throw new Error('Något gick snett, kontakta fnörsk');
+        throw new Error('Något gick fel.. testa ladda om sidan');
       } else {
         const data = await response.json();
         setCutestHamster(data);
@@ -34,7 +34,7 @@ const Cutest = () => {
     <div className="cutest-div">
       {cutestHamster ?
         cutestHamster.map(hamster => (
-          <article className='hamster-card cutest-hamster' key={hamster.id} >
+          <article className='hamster-card hamster-card-start cutest-hamster' key={hamster.id} >
             <img src={`/img/${hamster.imgName}`} alt={hamster.name} />
             <h2> Defending Champion </h2>
             <h3>Detta är {hamster.name}</h3>

@@ -13,7 +13,7 @@ const Gallery = () => {
       const data = await response.json();
       setAllHamsters(data);
     } catch (e:any) {
-      setErrorMessage('ojdu nu');
+      setErrorMessage('Något gick fel.. testa ladda om sidan');
     }
   };
 
@@ -44,7 +44,7 @@ const Gallery = () => {
     <section className="hamster-gallery-grid">
       {allHamsters?.map(hamster => (
         <article key={hamster.id} className="hamster-card">
-          <img src={getImgUrl(hamster.imgName || '')} alt={hamster.name}/>
+          <div className="img-div"><img src={getImgUrl(hamster.imgName || '')} alt={hamster.name}/></div>
           <dl>
             <dt>Namn</dt>
             <dd>{hamster.name}</dd>
@@ -63,7 +63,7 @@ const Gallery = () => {
               <dd>{hamster.defeats}</dd>
             </div>
           </dl>
-          <button className={'remove-gallery-card'} onClick={() => handleDelete(hamster)}>Ta bort</button>
+          <div className="h2-contest"><button className={'remove-gallery-card'} onClick={() => handleDelete(hamster)}>Ta bort</button></div>
         </article>
       ))}
       <ErrorMessage message={errorMessage} />

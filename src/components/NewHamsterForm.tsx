@@ -62,25 +62,25 @@ const NewHamsterForm = ({setAllHamsters}:AddFormProps) => {
     <form className="add-hamster-form">
       <h3>Lägg till din egna hamster!</h3>
       <label htmlFor="name_input">Namn</label>
-      <input type="text" name="name" id="name_input" onChange={(e) => setName(e.target.value)} placeholder="Hamsterns namn" className={validateName() ? 'name-inut valid' : 'name-inut not-valid'} />
+      <input type="text" name="name" id="name_input" onChange={(e) => setName(e.target.value)} placeholder="Steffe" className={validateName() ? 'name-inut valid' : 'name-inut not-valid'} />
 
       <label htmlFor="loves_input">Älskar</label>
-      <input type="text" name="loves" id ="loves_input" placeholder="Hamstern älskar att..." onChange={(e) => setLoves(e.target.value)} className={validateLoves() ? 'valid' : ' not-valid'} />
+      <input type="text" name="loves" id ="loves_input" placeholder="älskar att..." onChange={(e) => setLoves(e.target.value)} className={validateLoves() ? 'valid' : ' not-valid'} />
 
       <label htmlFor="age_input">Ålder</label>
-      <input type="number" name="age" id="age_input" placeholder="Hamsterns ålder" onChange={(e) => setAge(Number(e.target.value))} className={validateAge() ? 'age-inut valid' : 'age-inut not-valid'} />
+      <input type="number" name="age" id="age_input" placeholder="ålder" onChange={(e) => setAge(Number(e.target.value))} className={validateAge() ? 'age-inut valid' : 'age-inut not-valid'} />
       
       <label htmlFor="favFood_input">Favoritmat</label>
-      <input type="text" name="favFood" id="favFood_input" placeholder="Hamsterns favorit mat" onChange={(e) => setFavFood(e.target.value)} className={validateFood() ? 'valid' : ' not-valid'} />
+      <input type="text" name="favFood" id="favFood_input" placeholder="favorit mat" onChange={(e) => setFavFood(e.target.value)} className={validateFood() ? 'valid' : ' not-valid'} />
       
       <label htmlFor="img_input">Bild</label>
-      <input type="text" name="imgName" id="img_input" placeholder="Hamster bild url" onChange={(e) => setImgName(e.target.value)} className={validateImg() ? 'valid' : ' not-valid'} />
+      <input type="text" name="imgName" id="img_input" placeholder="Bildadress (URL)" onChange={(e) => setImgName(e.target.value)} className={validateImg() ? 'valid' : ' not-valid'} />
       {formIsValid() && (
         <button type="button" value="Add" onClick={() => handleAddHamster()}>
           Lägg till
         </button>
       )}
-      
+      <p>Håll över en hamster för att se mer info</p>
     </form>
   )
 }

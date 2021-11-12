@@ -25,7 +25,7 @@ const Compete = () => {
       setShowResult(false);
       saveData([firstContestantData, secondContestantData]);
     } catch (e:any) {
-      setErrorMessage('knas');
+      setErrorMessage('Något gick fel.. testa ladda om sidan');
     }
   };
 
@@ -91,11 +91,11 @@ const Compete = () => {
     <section className='contest-container'>
       {winner ?
         <>
-          <h2>And the winner is ...</h2>
-          <h2 className="winner-is-header">{winner?.name}</h2>
-          <button onClick={() => newGame()}>New Game</button>
+          <div className="h2-contest"><h2>Och vinnaren är... </h2>
+          <h2 className="winner-is-header"> {winner?.name}!</h2>
+          <button onClick={() => newGame()}>Ny match</button></div>
         </> : <>
-          <h2> Click on a card </h2>
+          <h2 className="h2-contest"> Klicka på ett hamster kort </h2>
         </>
       }
       <section className='contestants'>
