@@ -14,6 +14,7 @@ const Gallery = () => {
       setAllHamsters(data);
     } catch (e:any) {
       setErrorMessage('Något gick fel.. testa ladda om sidan');
+      console.log(e)
     }
   };
 
