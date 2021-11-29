@@ -35,7 +35,7 @@ app.use('/losers', losersRouter)
 app.use('/matchWinners', matchWinnersRouter)
 
 app.get('*', (req, res) => {
-	res.sendFile(path.join(appRoot, "public/html", "index.html"));
+	res.sendFile(path.resolve('/../build/index.html'))
 })
 
 
