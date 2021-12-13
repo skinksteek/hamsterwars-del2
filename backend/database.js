@@ -9,11 +9,11 @@ if (process.env.PRIVATE_KEY) {
 }
 
 function connect() {
-    admin.initializeApp({
-        credential: admin.credential.cert(privateKey)
-      });
-    const db = admin.firestore()
-    return db
+  const app = !admin.apps.length ? admin.initializeApp({
+    credential: admin.credential.cert(privateKey)
+  }) : admin.app()
+  const db = admin.firestore()
+  return db
 }
 
 module.exports = { connect }

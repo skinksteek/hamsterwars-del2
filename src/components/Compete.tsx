@@ -12,7 +12,7 @@ const Compete = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   const requestRandom = async (saveData: any) => {
-    try {    
+    try {
       const firstContestant = await fetch('/hamsters/random');
       const firstContestantData = await firstContestant.json();
       let secondContestant = await fetch('/hamsters/random');
@@ -24,7 +24,7 @@ const Compete = () => {
       }
       setShowResult(false);
       saveData([firstContestantData, secondContestantData]);
-    } catch (e:any) {
+    } catch (e: any) {
       setErrorMessage('Något gick fel.. testa ladda om sidan');
     }
   };
@@ -90,8 +90,8 @@ const Compete = () => {
       {winner ?
         <>
           <div className="h2-contest"><h2>Och vinnaren är... </h2>
-          <h2 className="winner-is-header"> {winner?.name}!</h2>
-          <button onClick={() => newGame()}>Ny match</button></div>
+            <h2 className="winner-is-header"> {winner?.name}!</h2>
+            <button onClick={() => newGame()}>Ny match</button></div>
         </> : <>
           <h2 className="h2-contest"> Klicka på ett hamster kort </h2>
         </>
